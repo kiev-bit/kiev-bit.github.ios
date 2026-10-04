@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Teacher's Day 💙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* === OPEN SCREEN === */
+        #intro {
+            position: fixed;
+            inset: 0;
+            background: #0f2b4d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1s ease;
+            cursor: pointer;
+        }
+        #intro.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .top-text {
+            color: #d8b4fe;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px #c084fc, 0 0 30px #a855f7;
+            animation: glowPurple 2s ease-in-out infinite alternate;
+        }
+        @keyframes glowPurple {
+            from { text-shadow: 0 0 10px #c084fc; }
+            to { text-shadow: 0 0 25px #a855f7, 0 0 40px #9333ea; }
+        }
+
+        .heart-container {
+            position: relative;
+            width: 220px;
+            height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #60a5fa;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #93c5fd, 0 0 15px #3b82f6;
+            opacity: 0;
+            transform: scale(0);
+            animation: formHeart 3s ease forwards;
+        }
+
+        @keyframes formHeart {
+            0% { opacity: 0; transform: scale(0) translateY(20px); }
+            70% { opacity: 1; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .click-hint {
+            color: #93c5fd;
+            font-size: 1rem;
+            margin-top: 20px;
+            animation: pulseHint 1.5s ease-in-out infinite;
+        }
+        @keyframes pulseHint {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* === LETTER PAGE === */
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff8e1, #ffecb3, #ffe082);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: floatDown 8s linear infinite;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        @keyframes floatDown {
+            0% { transform: translateY(-50px); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .card {
+            background: #bbdefb;
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(33, 150, 243, 0.35);
+            animation: fadeInUp 1.2s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .flower {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #1565c0;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .subhead {
+            text-align: center;
+            color: #1976d2;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .letter {
+            color: #0d47a1;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+        .letter p {
+            margin-bottom: 18px;
+        }
+        .letter strong {
+            color: #e65100;
+        }
+
+        .closing {
+            margin-top: 30px;
+            text-align: right;
+            color: #5d4037;
+        }
+        .signature {
+            margin-top: 8px;
+            font-weight: bold;
+            color: #1565c0;
+            font-size: 1.3rem;
+        }
+
+        .heart {
+            color: #e91e63;
+            display: inline-block;
+            animation: beat 1s ease-in-out infinite;
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .footer-note {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+
+<!-- === STAYING SPARKLING HEART INTRO === -->
+<div id="intro" onclick="openLetter()">
+    <p class="top-text">HAPPY TEACHER'S DAY, MA'AM!</p>
+    
+    <div class="heart-container" id="heartContainer"></div>
+    
+    <p class="click-hint">💌 Click to open</p>
+</div>
+
+<!-- === FLOATING PETALS === -->
+<div class="petal" style="left: 10%;">🌸</div>
+<div class="petal" style="left: 25%; animation-delay: 1.5s;">🌼</div>
+<div class="petal" style="left: 40%; animation-delay: 3s;">🌷</div>
+<div class="petal" style="left: 55%; animation-delay: 4.5s;">💮</div>
+<div class="petal" style="left: 70%; animation-delay: 2s;">🌻</div>
+<div class="petal" style="left: 85%; animation-delay: 5s;">🌸</div>
+
+<!-- === LETTER === -->
+<div class="card">
+    <div class="flower">💐🌻🌷</div>
+    
+    <h1>Happy Teacher's Day, Ma'am!</h1>
+    <p class="subhead">✨ Thank You for Everything ✨</p>
+
+    <div class="letter">
+        <p>Dear Ma'am Loren Jane,</p>
+
+        <p>On this special day, I want to say a big <strong>Thank You!</strong> 💛</p>
+
+        <p>Thank you for your patience, your kindness, and for always believing in me. Thank you for guiding me, teaching me, and helping me grow not just in my lessons, but as a better person every single day.</p>
+
+        <p>I know teaching isn't always easy, but you do it with so much heart and care. You inspire me to do my best, and I am so lucky and grateful to have you as my teacher.</p>
+
+        <p>May you be blessed with good health, joy, and all the love and happiness you deserve. You make such a beautiful difference in my life, and I will always remember you.</p>
+
+        <p>Once again — <strong>Happy Teacher's Day!</strong> I appreciate you so much! <span class="heart">❤️</span></p>
+    </div>
+
+    <div class="closing">
+        <p>With love and gratitude,</p>
+        <p class="signature">Kiev</p>
+    </div>
+
+    <p class="footer-note">💐 To the best teacher ever 💐</p>
+</div>
+
+<script>
+const container = document.getElementById('heartContainer');
+const totalParticles = 80;
+
+for (let i = 0; i < totalParticles; i++) {
+    const t = (i / totalParticles) * Math.PI * 2;
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+    
+    const px = 110 + x * 6.2;
+    const py = 100 + y * 6.2;
+
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = px + 'px';
+    p.style.top = py + 'px';
+    p.style.animationDelay = (i * 0.025) + 's';
+    container.appendChild(p);
+}
+
+function openLetter() {
+    document.getElementById('intro').classList.add('hidden');
+}
+</script>
+
+</body>
+</html>
+
